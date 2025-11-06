@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+    /* Mejor tipografía: Inter para texto, Poppins para títulos */
+    font-family: 'Inter', 'Poppins', 'Montserrat', sans-serif;
+    color: #2c3e50;
+    background-image: url("fondo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    scroll-behavior: smooth; /* Para scroll suave entre secciones */
+}
+
+/* Hacer que el documento tenga altura completa y active scroll-snap en el contenedor principal */
+html, body {
+    height: 100%;
+}
+
+main {
+    height: 100vh; /* ocupa la pantalla disponible */
+    overflow-y: auto;
+    scroll-snap-type: y mandatory; /* activamos snap por sección */
+}
+
+/* Estilo general para todas las secciones */
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    scroll-snap-align: start; /* cada sección encaja al hacer scroll */
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.overlay {
+    /* Tono más cálido y profundo, con ligera transparencia */
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,240,238,0.9));
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    backdrop-filter: blur(6px);
+}
+
+/* Layout del overlay: texto y foto lateral (solo en header) */
+.overlay-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: nowrap;
+}
+
+.overlay-text {
+    flex: 1 1 600px;
+    text-align: left;
+}
+
+.overlay-image {
+    flex: 0 0 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-photo {
+    /* foto un poco más grande y responsiva */
+    width: clamp(160px, 20vw, 300px);
+    height: clamp(160px, 20vw, 300px);
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 14px 38px rgba(0,0,0,0.28);
+    border: 6px solid rgba(255,255,255,0.9);
+}
+
+/* Reutilizable: panel centrado y con scroll interno si el contenido es largo */
+.panel {
+    background: linear-gradient(135deg, #e3f0ff 0%, #f9e7ff 100%);
+    /* Tarjetas con más color y suavidad */
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(41,128,185,0.10), 0 2px 8px rgba(0,0,0,0.04);
+    max-width: 1100px;
+    width: calc(100% - 4rem);
+    max-height: calc(100vh - 120px); /* dejar espacio para margen */
+    overflow: auto; /* permite scroll sólo dentro del panel */
+    box-sizing: border-box;
+    border: 2.5px solid #b6c6e6;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.panel:focus, .panel:hover {
+    box-shadow: 0 12px 40px rgba(41,128,185,0.18), 0 2px 8px rgba(0,0,0,0.08);
+    border-color: #7fa6e6;
+}
+
+/* Tipografías responsivas para evitar que el texto rompa el layout */
+/* Usar Poppins para títulos y Inter para el cuerpo (cargadas desde Google Fonts) */
+header h1 { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 600; letter-spacing: 0.4px; }
+header h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1.05rem, 2.1vw, 1.6rem); font-weight: 600; color: #7d3cff; }
+h2 { font-size: clamp(1.25rem, 2.4vw, 2rem); }
+p, li { font-size: clamp(0.95rem, 1.6vw, 1.05rem); line-height: 1.6; }
+
+/* Ajustes para listas y compañeros */
+.companero { margin: 1rem 0; }
+
+/* Mejoras de accesibilidad y foco */
+.panel:focus { outline: 3px solid rgba(41,128,185,0.2); }
+
+/* ...eliminado bloque suelto con error de sintaxis... */
+/* Footer */
+.footer {
+    width: 100%;
+    background: linear-gradient(90deg, #e3f0ff 0%, #f9e7ff 100%);
+    color: #2c3e50;
+    text-align: center;
+    padding: 32px 0 18px 0;
+    font-size: 1.08rem;
+    letter-spacing: 0.2px;
+    margin-top: 0;
+    border-top: 2px solid #b6c6e6;
+}
+.footer-content p:first-child {
+    font-weight: 600;
+    margin-bottom: 0.2em;
+}
+.footer-content p:last-child {
+    font-style: italic;
+    color: #7d3cff;
+    font-weight: 500;
+    margin-top: 0.2em;
+}
+
+header h1 {
+    /* Nombre principal: más pequeño y elegante */
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    font-weight: 600;
+    margin-bottom: 18px;
+    background: linear-gradient(45deg, #2980b9, #e74c3c);
+    background-clip: text; /* estándar */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px;
+}
+
+/* Botones profundos en la primera división (header) */
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.btn:active { transform: translateY(1px); }
+
+/* Colores profundos individuales */
+.btn-1 { background-color: #0b3d91; /* azul profundo */ }
+.btn-2 { background-color: #9b1c24; /* rojo profundo */ }
+.btn-3 { background-color: #0f6b57; /* verde profundo */ }
+
+.btn:hover { filter: brightness(1.06); transform: translateY(-3px); }
+
+/* Ajuste para que los botones en el header tengan espacio y se vean como botones */
+nav ul li { list-style: none; }
+
+nav a:hover {
+    /* fallback hover para enlaces que no tengan la clase .btn */
+    opacity: 0.95;
+}
+
+/* Responsive: en pantallas pequeñas apilar y centrar contenido del header */
+@media (max-width: 820px) {
+    .overlay-row { flex-direction: column; text-align: center; }
+    .overlay-text { text-align: center; }
+    .overlay-image { flex: 0 0 auto; }
+    .header-photo { width: 160px; height: 160px; }
+    nav ul { justify-content: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+}
